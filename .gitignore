@@ -1,0 +1,7 @@
+
+/.temp
+/node_modules
+/run
+/src/.depend
+/.vscode
+/scripts/*.depend
