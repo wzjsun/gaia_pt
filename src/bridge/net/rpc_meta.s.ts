@@ -1,10 +1,10 @@
 
-import { BonBuffer } from "../../util/bon";
-import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../../struct/struct_mgr";
-import { StructInfo, FieldType, FieldInfo, EnumType} from "../../struct/sinfo";
+import { BonBuffer } from "../../pi/util/bon";
+import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../../pi/struct/struct_mgr";
+import { StructInfo, FieldType, FieldInfo, EnumType} from "../../pi/struct/sinfo";
 
 export class RpcMeta extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/net/rpc/rpc_meta.RpcMeta",938289590,  new Map( [["constructor","true"],[" managed","false"]]), [new FieldInfo("path",  new FieldType( EnumType.Str ), null) ]);
+	static _$info = new StructInfo("gaia_pt/src/bridge/net/rpc_meta.RpcMeta",2623953717,  new Map( [["constructor","true"],[" managed","false"]]), [new FieldInfo("path",  new FieldType( EnumType.Str ), null) ]);
 
     path: string;
 
