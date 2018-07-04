@@ -1,7 +1,11 @@
 
 /.temp
-/node_modules
-/run
-/src/.depend
 /.vscode
-/scripts/*.depend
+/src/app/.depend
+/src/pi/.depend
+/src/bridge/.depend
+/scripts_app/*.depend
+/scripts_bridge/*.depend
+/scripts_pi/*.depend
+/run/*
+!bin/

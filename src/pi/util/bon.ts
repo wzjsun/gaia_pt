@@ -452,7 +452,7 @@ export class BonBuffer {
 		if (v < 0x80) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
-			this.view.setUint8(this.tail++, v);
+            this.view.setUint8(this.tail++, v);
 			return this;
 		}
 		if (v < 0x4000) {
@@ -479,7 +479,7 @@ export class BonBuffer {
 		const t = this.tail;
 		// 根据预估大小，预留出足够的空间来写入容器的总大小
 		estimatedSize = estimatedSize || 0xffff;
-		let limitSize;
+        let limitSize;
 		if (estimatedSize <= 64) {
 			if (t + 5 > this.view.byteLength)
 				this.extendCapity(5 + estimatedSize);
@@ -724,7 +724,7 @@ export class BonBuffer {
 	readPInt() {
 		const v = this.view.getUint8(this.head);
 		if (v < 0x80) {
-			this.head++;
+            this.head++;
 			return v;
 		}
 		if (v < 0xC0) {
@@ -749,7 +749,7 @@ export class BonBuffer {
         }
 
         let map = new Map();
-        let size = this.readPInt();
+        let size = this.readInt();
         for(let i = 0; i < size; i++){
             let item = callbackfn();
             map.set(item[0] ,item[1]);
@@ -767,7 +767,7 @@ export class BonBuffer {
         }
 
         let array = [];
-        let length = this.readPInt();
+        let length = this.readInt();
         for(let i = 0; i < length; i++){
             let el = callbackfn();
             array.push(el);
@@ -791,7 +791,8 @@ export class BonBuffer {
         if (t < 180 || t > 249) {
 			throw "非容器， 无法读";
 		}
-		return readContent(this, t, next);
+        let a = readContent(this, t, next);
+        return a;
     }
 }
 
@@ -892,23 +893,23 @@ const readContent = (bb: BonBuffer, t: number, readNext?: ReadNext) => {
             return utf8Decode(new Uint8Array(bb.view.buffer, bb.view.byteOffset + bb.head - len, len));
         case 245:
             len = bb.view.getUint8(bb.head);
-            bb.head += 6;
+            bb.head += 5;
             return readNext(bb, bb.view.getUint32(bb.head - 4, true), len);
         case 246:
             len = bb.view.getUint16(bb.head, true);
-            bb.head += 7;
+            bb.head += 6;
             return readNext(bb, bb.view.getUint32(bb.head - 4, true), len);
         case 247:
             len = bb.view.getUint32(bb.head, true);
-            bb.head += 9;
+            bb.head += 8;
             return readNext(bb, bb.view.getUint32(bb.head - 4, true), len);
         case 248:
             len = bb.view.getUint16(bb.head, true) + (bb.view.getUint32(bb.head + 2, true) * 0x10000);
-            bb.head += 11;
+            bb.head += 10;
             return readNext(bb, bb.view.getUint32(bb.head - 4, true), len);
         case 249:
             len = bb.view.getUint32(bb.head, true) + (bb.view.getUint32(bb.head + 4, true) * 0x100000000);
-            bb.head += 13;
+            bb.head += 12;
             return readNext(bb, bb.view.getUint32(bb.head - 4, true), len);
         default:
             if (t < 30)
