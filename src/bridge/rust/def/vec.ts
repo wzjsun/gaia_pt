@@ -311,5 +311,56 @@ export class Vec extends NObject{
         }
         
         return result; 
+    }    
+    
+    
+    static new_u32 = (): Vec => {     
+        let result = call(1708919049,[  ]);     
+        (<any>result) = new Vec(result);
+        
+        return result; 
+    }    
+    
+    
+    static with_capacity_u32 = (capacity:number): Vec => {          
+        let result = call(1994007224,[ capacity ]);     
+        (<any>result) = new Vec(result);
+        
+        return result; 
+    }    
+    
+    
+    as_slice_u32 = (): Array<number> => {     
+        let result = call(2842251538,[ this.self ]);     
+        return result; 
+    }    
+    
+    
+    swap_remove_u32 = (index:number): number => {          
+        return call(1587209337,[ this.self,index ]); 
+    }    
+    
+    
+    insert_u32 = (index:number,element:number) => {               
+        call(3744706321,[ this.self,index,element ]);
+    }    
+    
+    
+    remove_u32 = (index:number): number => {          
+        return call(2103362090,[ this.self,index ]); 
+    }    
+    
+    
+    push_u32 = (value:number) => {          
+        call(1420742667,[ this.self,value ]);
+    }    
+    
+    
+    pop_u32 = (): number => {     
+        let result = call(3987113084,[ this.self ]);     
+        if(result !== undefined){         
+        }
+        
+        return result; 
     }
 }

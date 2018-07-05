@@ -1,6 +1,6 @@
 
 import {cfgMgr} from "../../pi/util/cfg";
-import {RpcMeta} from "../../pi/net/rpc/rpc_meta.s";
+import {RpcMeta} from "../../bridge/net/rpc_meta.s";
 import {AsyncMeta} from "../../bridge/async/async_meta.s";
 let _$c = (path):RpcMeta => {return new RpcMeta(path)};
 let old = cfgMgr.get("_$rpc_meta");

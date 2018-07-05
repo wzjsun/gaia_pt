@@ -17,6 +17,7 @@ import {RPCServer} from "../rpc/server"
 import {TopicHandler} from "./handler"
 import {AsyncRequestHandler} from "./handler"
 import {Depend} from "./depend"
+import {P2PManage} from "../pi_p2p/manage"
 export class DBIter extends NObject{
     static _$info = new SInfo("DBIter", 517878327 , new Map(), []);    
     
@@ -253,6 +254,18 @@ export const try_fill_bytes = (or:Rand,len:number): Vec| Error => {
     let result = call(2395132060,[ or,len ]);          
         (<any>result) = new Vec(result);
         
+    
+    return result; 
+}
+
+
+export const p2p_manage_new = (addr:string,arr1:Vec,arr2:Vec): P2PManage => {               
+    (<any>arr1) = arr1.self;
+         
+    (<any>arr2) = arr2.self;
+    
+    let result = call(1994863356,[ addr,arr1,arr2 ]);     
+    (<any>result) = new P2PManage(result);
     
     return result; 
 }

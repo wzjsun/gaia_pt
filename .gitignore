@@ -9,3 +9,4 @@
 /scripts_pi/*.depend
 /run/*
 !bin/
+/node_modules
