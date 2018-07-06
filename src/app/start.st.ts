@@ -1,7 +1,8 @@
 
 
-import { __thread_call } from "./vm/vm";
-import * as Mqtt from "./init/mqtt.i";
+import { __thread_call } from "../bridge/vm/vm";
+import * as Mqtt from "../bridge/init/mqtt.i";
+import * as P2P from "../bridge/init/p2p/p2p.i";
 import * as Async from "../bridge/init/async.i";
 import {writeCfg} from "../bridge/init/init_cfg";
 
@@ -11,6 +12,7 @@ import {asyncCall, syncCall} from "../bridge/async/async";
 const init = () => {
     writeCfg();//必须先写配置
     Mqtt.init();
+    //P2P.init();
     Async.init();
 
     //test
