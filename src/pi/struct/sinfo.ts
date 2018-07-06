@@ -18,13 +18,12 @@ export enum EnumType{
 	Isize,
 	F32,
 	F64,
-	BigI,
 	Str,
 	Bin,
 	UTC,
-	Arr,
+    Arr,
 	Map,
-	Struct,
+	Struct,//元组被认为是结构体类型
 }
 
 export class FieldType implements BonCode{
