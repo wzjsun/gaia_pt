@@ -1,7 +1,8 @@
 
-import {NativeObject, call, syncCall, callbacks, u128ToBuffer, u64ToBuffer} from "../../vm/vm";
+import {NativeObject, call, syncCall, callbacks} from "../../vm/vm";
 import {NObject} from "../../vm/nobject";
-import * as bigInt from "../../vm/biginteger";
+import * as bigInt from "../../../pi/bigint/biginteger";
+import {u64ToBuffer, u128ToBuffer} from "../../../pi/bigint/util";
 import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
 import {Vec} from "../def/vec"
 import {Mgr} from "../pi_db/mgr"
@@ -36,8 +37,7 @@ export class DBIter extends NObject{
     }
 }
 
-
-export const clone_db_mgr = (mgr:Mgr): Mgr => {          
+export const cloneDbMgr = (mgr:Mgr): Mgr => {          
     (<any>mgr) = mgr.self;
     
     let result = call(2882430941,[ mgr ]);     
@@ -46,7 +46,7 @@ export const clone_db_mgr = (mgr:Mgr): Mgr => {
     return result; 
 }
 
-export const iter_db = (tr:Tr,ware:string,tab:string,key:Uint8Array,descending:boolean,_filter:string):DBIter| Error => {     
+export const iterDb = (tr:Tr,ware:string,tab:string,key:Uint8Array,descending:boolean,_filter:string):DBIter| Error => {     
      
     (<any>tr) = tr.self;
                    
@@ -63,8 +63,7 @@ export const iter_db = (tr:Tr,ware:string,tab:string,key:Uint8Array,descending:b
     return r;
 }
 
-
-export const register_memery_db = (mgr:Mgr,prefix:string,ware:MemeryDB): boolean => {          
+export const registerMemeryDb = (mgr:Mgr,prefix:string,ware:MemeryDB): boolean => {          
     (<any>mgr) = mgr.self;
               
     (<any>ware) = ware.self;
@@ -72,32 +71,28 @@ export const register_memery_db = (mgr:Mgr,prefix:string,ware:MemeryDB): boolean
     return call(3700434235,[ mgr,prefix,ware ]); 
 }
 
-
-export const create_sinfo = (data:Uint8Array): StructInfo => {          
+export const createSinfo = (data:Uint8Array): StructInfo => {          
     let result = call(1995451612,[ data ]);     
     (<any>result) = new StructInfo(result);
     
     return result; 
 }
 
-
-export const tabkv_with_value = (ware:string,tab:string,key:Uint8Array,value:Uint8Array): TabKV => {                         
+export const tabkvWithValue = (ware:string,tab:string,key:Uint8Array,value:Uint8Array): TabKV => {                         
     let result = call(3189416152,[ ware,tab,key,value ]);     
     (<any>result) = new TabKV(result);
     
     return result; 
 }
 
-
-export const tabkv_new = (ware:string,tab:string,key:Uint8Array): TabKV => {                    
+export const tabkvNew = (ware:string,tab:string,key:Uint8Array): TabKV => {                    
     let result = call(1338391149,[ ware,tab,key ]);     
     (<any>result) = new TabKV(result);
     
     return result; 
 }
 
-
-export const tabkv_get_value = (tabkv:TabKV): Vec => {          
+export const tabkvGetValue = (tabkv:TabKV): Vec => {          
     (<any>tabkv) = tabkv.self;
     
     let result = call(2340393156,[ tabkv ]);     
@@ -109,8 +104,7 @@ export const tabkv_get_value = (tabkv:TabKV): Vec => {
     return result; 
 }
 
-
-export const clone_vm_factory = (factory:VMFactory): VMFactory => {          
+export const cloneVmFactory = (factory:VMFactory): VMFactory => {          
     (<any>factory) = factory.self;
     
     let result = call(1209559845,[ factory ]);     
@@ -119,8 +113,7 @@ export const clone_vm_factory = (factory:VMFactory): VMFactory => {
     return result; 
 }
 
-
-export const mqtt_bind = (mgr:NetManager,addr:string,protocol:string,send_buf_size:number,recv_timeout:number): ServerNode => {          
+export const mqttBind = (mgr:NetManager,addr:string,protocol:string,send_buf_size:number,recv_timeout:number): ServerNode => {          
     (<any>mgr) = mgr.self;
                         
     let result = call(56622988,[ mgr,addr,protocol,send_buf_size,recv_timeout ]);     
@@ -129,15 +122,13 @@ export const mqtt_bind = (mgr:NetManager,addr:string,protocol:string,send_buf_si
     return result; 
 }
 
-
-export const mqtt_respond = (session:Session,topic:string,data:Uint8Array) => {          
+export const mqttRespond = (session:Session,topic:string,data:Uint8Array) => {          
     (<any>session) = session.self;
               
     call(3661222231,[ session,topic,data ]);
 }
 
-
-export const register_rpc_handler = (serv:RPCServer,topic:string,sync:boolean,handler:TopicHandler): void| Error => {          
+export const registerRpcHandler = (serv:RPCServer,topic:string,sync:boolean,handler:TopicHandler): void| Error => {          
     (<any>serv) = serv.self;
                    
     (<any>handler) = handler.self;
@@ -147,15 +138,13 @@ export const register_rpc_handler = (serv:RPCServer,topic:string,sync:boolean,ha
     return result; 
 }
 
-
-export const register_async_handler = (topic:string,handler:AsyncRequestHandler) => {               
+export const registerAsyncHandler = (topic:string,handler:AsyncRequestHandler) => {               
     (<any>handler) = handler.self;
     
     call(188544322,[ topic,handler ]);
 }
 
-
-export const arc_new_TopicHandler = (v:TopicHandler): TopicHandler => {          
+export const arcNewTopicHandler = (v:TopicHandler): TopicHandler => {          
     (<any>v) = v.self;
     
     let result = call(690562975,[ v ]);     
@@ -164,8 +153,7 @@ export const arc_new_TopicHandler = (v:TopicHandler): TopicHandler => {
     return result; 
 }
 
-
-export const arc_new_AsyncRequestHandler = (v:AsyncRequestHandler): AsyncRequestHandler => {          
+export const arcNewAsyncRequestHandler = (v:AsyncRequestHandler): AsyncRequestHandler => {          
     (<any>v) = v.self;
     
     let result = call(3614283964,[ v ]);     
@@ -174,8 +162,7 @@ export const arc_new_AsyncRequestHandler = (v:AsyncRequestHandler): AsyncRequest
     return result; 
 }
 
-
-export const arc_deref_Vec = (v:Vec): Vec => {          
+export const arcDerefVec = (v:Vec): Vec => {          
     (<any>v) = v.self;
     
     let result = call(1613784573,[ v ]);     
@@ -184,8 +171,7 @@ export const arc_deref_Vec = (v:Vec): Vec => {
     return result; 
 }
 
-
-export const get_depend = (dp:Depend,path:string): Vec => {          
+export const getDepend = (dp:Depend,path:string): Vec => {          
     (<any>dp) = dp.self;
          
     let result = call(1394145511,[ dp,path ]);     
@@ -199,36 +185,32 @@ export const sleep = (ms:number) => {
     syncCall(2436018863,[ ms ]);
 }
 
-export const set_timeout = (ms:number, f:() => void) => {
+export const setTimeout = (ms:number, f:() => void) => {
     var _$index = callbacks.register(f);
      
     call(3964336770,[ ms, _$index]);
 }
 
-
-export const clear_timeout = (index:AtomIndex) => {          
+export const clearTimeout = (index:AtomIndex) => {          
     (<any>index) = index.self;
     
     call(1432682371,[ index ]);
 }
 
-
-export const create_rand = (): Rand => {     
+export const createRand = (): Rand => {     
     let result = call(149836760,[  ]);     
     (<any>result) = new Rand(result);
     
     return result; 
 }
 
-
-export const next_u32 = (or:Rand): number => {          
+export const nextU32 = (or:Rand): number => {          
     (<any>or) = or.self;
     
     return call(457748500,[ or ]); 
 }
 
-
-export const next_u64 = (or:Rand): bigInt.BigInteger => {          
+export const nextU64 = (or:Rand): bigInt.BigInteger => {          
     (<any>or) = or.self;
     
     let result = call(4100963304,[ or ]);     
@@ -237,8 +219,7 @@ export const next_u64 = (or:Rand): bigInt.BigInteger => {
     return result; 
 }
 
-
-export const fill_bytes = (or:Rand,len:number): Vec => {          
+export const fillBytes = (or:Rand,len:number): Vec => {          
     (<any>or) = or.self;
          
     let result = call(3008593203,[ or,len ]);     
@@ -247,8 +228,7 @@ export const fill_bytes = (or:Rand,len:number): Vec => {
     return result; 
 }
 
-
-export const try_fill_bytes = (or:Rand,len:number): Vec| Error => {          
+export const tryFillBytes = (or:Rand,len:number): Vec| Error => {          
     (<any>or) = or.self;
          
     let result = call(2395132060,[ or,len ]);          
@@ -258,8 +238,7 @@ export const try_fill_bytes = (or:Rand,len:number): Vec| Error => {
     return result; 
 }
 
-
-export const p2p_manage_new = (addr:string,arr1:Vec,arr2:Vec): P2PManage => {               
+export const p2pManageNew = (addr:string,arr1:Vec,arr2:Vec): P2PManage => {               
     (<any>arr1) = arr1.self;
          
     (<any>arr2) = arr2.self;

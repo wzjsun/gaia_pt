@@ -24,7 +24,7 @@ export enum EnumType{
 	UTC,
 	Arr,
 	Map,
-	Struct,
+	Struct,//元组被认为是结构体类型
 }
 
 export class FieldType implements BonCode{
