@@ -308,6 +308,30 @@ export const blsSignatureIsEqual = (lhs:BlsSignature,rhs:BlsSignature): boolean 
     return call(1251457612,[ lhs,rhs ]); 
 }
 
+export const blsSecretKeyAdd = (sec_key:BlsSecretKey,rhs:BlsSecretKey) => {          
+    (<any>sec_key) = sec_key.self;
+         
+    (<any>rhs) = rhs.self;
+    
+    call(863200741,[ sec_key,rhs ]);
+}
+
+export const blsPublicKeyAdd = (pub_key:BlsPublicKey,rhs:BlsPublicKey) => {          
+    (<any>pub_key) = pub_key.self;
+         
+    (<any>rhs) = rhs.self;
+    
+    call(3082139465,[ pub_key,rhs ]);
+}
+
+export const blsSignatureAdd = (sig:BlsSignature,rhs:BlsSignature) => {          
+    (<any>sig) = sig.self;
+         
+    (<any>rhs) = rhs.self;
+    
+    call(3576086575,[ sig,rhs ]);
+}
+
 export const blsSecretKeyShare = (src_key:BlsSecretKey,k:number,id:BlsId): BlsSecretKey => {          
     (<any>src_key) = src_key.self;
               
@@ -336,12 +360,36 @@ export const blsPublicKeyShare = (src_key:BlsPublicKey,k:number,id:BlsId): BlsPu
     return result; 
 }
 
+export const blsGetIdFromVec = (vec:BlsIdVec,index:number): BlsId => {          
+    (<any>vec) = vec.self;
+         
+    let result = call(4217857181,[ vec,index ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsId(result);
+            
+    }
+    
+    return result; 
+}
+
 export const blsAddIdToVec = (vec:BlsIdVec,id:BlsId) => {          
     (<any>vec) = vec.self;
          
     (<any>id) = id.self;
     
     call(3778283533,[ vec,id ]);
+}
+
+export const blsGetSecretKeyFromVec = (vec:BlsSecKeyVec,index:number): BlsSecretKey => {          
+    (<any>vec) = vec.self;
+         
+    let result = call(1905417019,[ vec,index ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsSecretKey(result);
+            
+    }
+    
+    return result; 
 }
 
 export const blsAddSecretKeyToVec = (vec:BlsSecKeyVec,sec_key:BlsSecretKey) => {          
@@ -352,6 +400,30 @@ export const blsAddSecretKeyToVec = (vec:BlsSecKeyVec,sec_key:BlsSecretKey) => {
     call(2172313629,[ vec,sec_key ]);
 }
 
+export const blsGetSecretKeyVec = (vec:BlsSecKeyVec): BlsSecretKey => {          
+    (<any>vec) = vec.self;
+    
+    let result = call(2861556416,[ vec ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsSecretKey(result);
+            
+    }
+    
+    return result; 
+}
+
+export const blsGetPublicKeyFromVec = (vec:BlsPubKeyVec,index:number): BlsPublicKey => {          
+    (<any>vec) = vec.self;
+         
+    let result = call(4054179525,[ vec,index ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsPublicKey(result);
+            
+    }
+    
+    return result; 
+}
+
 export const blsAddPublicKeyToVec = (vec:BlsPubKeyVec,pub_key:BlsPublicKey) => {          
     (<any>vec) = vec.self;
          
@@ -360,12 +432,48 @@ export const blsAddPublicKeyToVec = (vec:BlsPubKeyVec,pub_key:BlsPublicKey) => {
     call(3718730423,[ vec,pub_key ]);
 }
 
+export const blsGetPublicKeyVec = (vec:BlsPubKeyVec): BlsPublicKey => {          
+    (<any>vec) = vec.self;
+    
+    let result = call(2864459653,[ vec ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsPublicKey(result);
+            
+    }
+    
+    return result; 
+}
+
+export const blsGetSignatureFromVec = (vec:BlsSigVec,index:number): BlsSignature => {          
+    (<any>vec) = vec.self;
+         
+    let result = call(376820189,[ vec,index ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsSignature(result);
+            
+    }
+    
+    return result; 
+}
+
 export const blsAddSignatureToVec = (vec:BlsSigVec,sig:BlsSignature) => {          
     (<any>vec) = vec.self;
          
     (<any>sig) = sig.self;
     
     call(263952757,[ vec,sig ]);
+}
+
+export const blsGetSignatureKeyVec = (vec:BlsSigVec): BlsSignature => {          
+    (<any>vec) = vec.self;
+    
+    let result = call(2039602097,[ vec ]);     
+    if(result !== undefined){         
+            (<any>result) = new BlsSignature(result);
+            
+    }
+    
+    return result; 
 }
 
 export const blsSecretKeyRecover = (sec_key_vec:BlsSecKeyVec,id_vec:BlsIdVec,n:number): BlsSecretKey => {          
