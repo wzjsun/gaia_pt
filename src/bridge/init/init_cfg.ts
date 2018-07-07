@@ -4,13 +4,12 @@ import {Struct, StructMgr} from "../../pi/struct/struct_mgr";
 import { cfgMgr } from "../../pi/util/cfg";
 import {Mgr, Tr} from "../rust/pi_db/mgr"
 import {Vec} from "../rust/def/vec"
-import {create_sinfo, tabkv_with_value, tabkv_new, register_memery_db} from "../rust/pi_serv/js_call"
-import {MemeryDB} from "../rust/pi_db/memery_db"
+import { createSinfo, tabkvWithValue} from "../rust/pi_serv/js_call"
 import {write} from "../db"
 import {BonBuffer} from "../../pi/util/bon"
 import { Atom } from "../rust/pi_lib/atom";
 import {Depend} from "../rust/pi_serv/depend";
-import { Error, __thread_call } from "../vm/vm";
+import { Error } from "../vm/vm";
 
 export const db_mgr = new Mgr((<any>self)._$db_mgr);
 export const depend = new Depend((<any>self)._$depend);
@@ -36,7 +35,7 @@ export const writeCfg = () => {
         }
 
 		let first: Struct;
-        let writeData = Vec.new_TabKV();
+        let writeData = Vec.newTabKV();
 		tab.forEach((value, key) => {
 			if(!first){
 				first = value;
@@ -46,13 +45,13 @@ export const writeCfg = () => {
 
 			let valueBon = new BonBuffer();
             value.bonEncode(valueBon);
-			writeData.push_TabKV(tabkv_with_value("memory", (<any>first.constructor)._$info.name,  keyBon.getBuffer(), valueBon.getBuffer()) );
+			writeData.pushTabKV(tabkvWithValue("memory", (<any>first.constructor)._$info.name,  keyBon.getBuffer(), valueBon.getBuffer()) );
 		});
 
 		write(db_mgr, (tr) => {
             let buf = new BonBuffer();
             (<any>first.constructor)._$info.bonEncode(buf);
-            let r = tr.alter(Atom.from_From("memory"), Atom.from_From((<any>first.constructor)._$info.name), create_sinfo(buf.getBuffer()));
+            let r = tr.alter(Atom.fromFrom("memory"), Atom.fromFrom((<any>first.constructor)._$info.name), createSinfo(buf.getBuffer()));
 			if(r instanceof Error){
 				return r;
             }

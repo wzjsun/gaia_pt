@@ -9,7 +9,6 @@ import {StructInfo} from "../pi_lib/sinfo"
 export class Mgr extends NObject{
     static _$info = new SInfo("Mgr", 733545086 , new Map(), []);    
     
-    
     static new = (gen:GuidGen): Mgr => {          
         (<any>gen) = gen.self;
         
@@ -18,7 +17,6 @@ export class Mgr extends NObject{
         
         return result; 
     }    
-    
     
     transaction = (writable:boolean): Tr => {          
         let result = call(951191934,[ this.self,writable ]);     

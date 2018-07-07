@@ -7,7 +7,6 @@ import {Vec} from "../def/vec"
 export class VMFactory extends NObject{
     static _$info = new SInfo("VMFactory", 1373771230 , new Map(), []);    
     
-    
     static new = (size:number,auth:NativeObjsAuth): VMFactory => {               
         (<any>auth) = auth.self;
         
@@ -16,7 +15,6 @@ export class VMFactory extends NObject{
         
         return result; 
     }    
-    
     
     append = (code:Vec): VMFactory => {          
         (<any>code) = code.self;

@@ -6,7 +6,6 @@ import {ServerNode} from "../mqtt/server"
 export class RPCServer extends NObject{
     static _$info = new SInfo("RPCServer", 3418977212 , new Map(), []);    
     
-    
     static new = (mqtt:ServerNode): RPCServer => {          
         (<any>mqtt) = mqtt.self;
         

@@ -7,7 +7,6 @@ import {Vec} from "../def/vec"
 export class Session extends NObject{
     static _$info = new SInfo("Session", 107216069 , new Map(), []);    
     
-    
     respond = (_topic:Atom,msg:Vec) => {          
         (<any>_topic) = _topic.self;
              

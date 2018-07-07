@@ -31,14 +31,14 @@ export class P2PCfg extends Struct {
 		this.addr = bb.readUtf8();
 		this.con = bb.readUtf8();
 		this.peer_list = bb.readArray(() => {
-	return     [bb.readUtf8(), bb.readInt()] as any;
+	return     [bb.readUtf8(), bb.readInt()] as [string,number];
 })
 ;
         }
 
 	bonEncode(bb:BonBuffer) {        
         bb.writeUtf8(this.addr);
-                
+
         bb.writeUtf8(this.con);
                 
         bb.writeArray(this.peer_list, (el) => {    

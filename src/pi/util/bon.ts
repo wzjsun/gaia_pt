@@ -257,19 +257,19 @@ export class BonBuffer {
 		if (v >= -1 && v < 20) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
-			this.view.setUint8(this.tail++, v + 10);
+            this.view.setUint8(this.tail++, v + 16);
 			return this;
 		}
 		let i = 0;
 		if (v < 0) {
 			v = -v;
 			i = 27;
-		}
+        }
 		if (v <= 0xFF) {
 			if (this.tail + 2 > this.view.byteLength)
 				this.extendCapity(2);
 			this.view.setUint8(this.tail++, 36 - i);
-			this.view.setUint8(this.tail++, v);
+            this.view.setUint8(this.tail++, v);
 		} else if (v <= 0xFFFF) {
 			if (this.tail + 3 > this.view.byteLength)
 				this.extendCapity(3);
@@ -983,13 +983,13 @@ const readContent = (bb: BonBuffer, t: number, readNext?: ReadNext) => {
                 // 读取二进制数据
                 len = t - 42;
                 bb.head += len;
-                return bb.u8.slice(bb.head - len, bb.head);
+                return utf8Decode(new Uint8Array(bb.view.buffer, bb.view.byteOffset + bb.head - len, len));
             }
             if (t < 107) {
                 // 读取utf8编码的字符串
                 len = t - 111;
                 bb.head += len;
-                return utf8Decode(new Uint8Array(bb.view.buffer, bb.view.byteOffset + bb.head - len, len));
+                return bb.u8.slice(bb.head - len, bb.head);
             }
             if (t < 245){
                 bb.head += 4;
