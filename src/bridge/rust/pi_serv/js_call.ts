@@ -7,7 +7,7 @@ import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
 import {Vec} from "../def/vec"
 import {Mgr} from "../pi_db/mgr"
 import {Tr} from "../pi_db/mgr"
-import {MemeryDB} from "../pi_db/memery_db"
+import {DB} from "../pi_db/memery_db"
 import {StructInfo} from "../pi_lib/sinfo"
 import {TabKV} from "../pi_db/db"
 import {VMFactory} from "../pi_vm/pi_vm_impl"
@@ -63,7 +63,7 @@ export const iterDb = (tr:Tr,ware:string,tab:string,key:Uint8Array,descending:bo
     return r;
 }
 
-export const registerMemeryDb = (mgr:Mgr,prefix:string,ware:MemeryDB): boolean => {          
+export const registerMemeryDb = (mgr:Mgr,prefix:string,ware:DB): boolean => {          
     (<any>mgr) = mgr.self;
               
     (<any>ware) = ware.self;

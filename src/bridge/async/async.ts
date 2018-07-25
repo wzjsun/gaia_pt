@@ -3,10 +3,9 @@
  * 最多支持10个参数， 参数中， 不能将一个NativeObject嵌套在一个复杂类型内部
  * 返回值也不能将NativeObject嵌套在一个复杂类型内部
  */
-import {NativeObject, callbacks} from "../vm/vm";
+import {NativeObject, callbacks, __thread_yield} from "../vm/vm";
 import {BonBuffer, SerializeType} from "../../pi/util/bon";
 import {readany, writeArray} from "./util";
-import {__thread_yield} from "../vm/vm";
 
 export const asyncCall = (name: string, args: Array<SerializeType>, callback: any) => {
     let back = (r: Uint8Array, nobjs:Array<any>) => {
