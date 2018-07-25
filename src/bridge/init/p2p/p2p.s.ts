@@ -38,7 +38,7 @@ export class P2PCfg extends Struct {
 
 	bonEncode(bb:BonBuffer) {        
         bb.writeUtf8(this.addr);
-
+                
         bb.writeUtf8(this.con);
                 
         bb.writeArray(this.peer_list, (el) => {    
