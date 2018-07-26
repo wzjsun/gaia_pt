@@ -185,7 +185,7 @@ export const sleep = (ms:number) => {
     syncCall(2436018863,[ ms ]);
 }
 
-export const setTimeout = (ms:number, f:() => void) => {
+export const setTimeout = (ms:number, f:()) => {
     var _$index = callbacks.register(f);
      
     call(3964336770,[ ms, _$index]);

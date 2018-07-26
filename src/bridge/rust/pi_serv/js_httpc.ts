@@ -4,7 +4,10 @@ import {NObject} from "../../vm/nobject";
 import * as bigInt from "../../../pi/bigint/biginteger";
 import {u64ToBuffer, u128ToBuffer} from "../../../pi/bigint/util";
 import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
+import {Vec} from "../def/vec"
 import {HttpClient} from "../httpc"
+import {Atom} from "../pi_lib/atom"
+import {HttpClientResponse} from "../httpc"
 export class HttpClientOptions extends NObject{
     static _$info = new SInfo("HttpClientOptions", 1131624585 , new Map(), []);    
     
@@ -51,6 +54,94 @@ export class HttpClientOptions extends NObject{
         return result; 
     }
 }
+export class HttpClientBody extends NObject{
+    static _$info = new SInfo("HttpClientBody", 2404566785 , new Map(), []);    
+    
+    static bodyVec = (body:Vec): HttpClientBody => {          
+        (<any>body) = body.self;
+        
+        let result = call(2113618061,[ body ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    static jsonVec = (key:string,value:Vec): HttpClientBody => {               
+        (<any>value) = value.self;
+        
+        let result = call(1703602826,[ key,value ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    static formVec = (key:string,value:Vec): HttpClientBody => {               
+        (<any>value) = value.self;
+        
+        let result = call(3718237849,[ key,value ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    getJsonVal = (key:string): string => {          
+        let result = call(2175286088,[ this.self,key ]);     
+        if(result !== undefined){         
+        }
+        
+        return result; 
+    }    
+    
+    addJsonKv = (key:string,value:string): number => {               
+        return call(1065006446,[ this.self,key,value ]); 
+    }    
+    
+    removeJsonKv = (key:string): string => {          
+        let result = call(1500292772,[ this.self,key ]);     
+        if(result !== undefined){         
+        }
+        
+        return result; 
+    }    
+    
+    clearJsonKvs = () => {     
+        call(2345066455,[ this.self ]);
+    }    
+    
+    addFormKv = (key:string,value:string): HttpClientBody => {               
+        let result = call(1016322459,[ this.self,key,value ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    addFormFile = (key:string,file:string): HttpClientBody| Error => {               
+        let result = call(2344044784,[ this.self,key,file ]);          
+        
+        return result; 
+    }    
+    
+    static bodyString = (body:string): HttpClientBody => {          
+        let result = call(794872933,[ body ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    static jsonString = (key:string,value:string): HttpClientBody => {               
+        let result = call(965054041,[ key,value ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    static formString = (key:string,value:string): HttpClientBody => {               
+        let result = call(2118843620,[ key,value ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }
+}
 
 export const createHttpClient = (options:HttpClientOptions): HttpClient| Error => {          
     (<any>options) = options.self;
@@ -61,6 +152,51 @@ export const createHttpClient = (options:HttpClientOptions): HttpClient| Error =
     
     return result; 
 }
-export class HttpClientBody extends NObject{
-    static _$info = new SInfo("HttpClientBody", 2404566785 , new Map(), []);
+
+export const getVec = (client:HttpClient,url:Atom,body:HttpClientBody, callback:([HttpClient,HttpClientResponse| Error])) => {
+    var _$index = callbacks.register(callback);
+     
+    (<any>client) = client.self;
+         
+    (<any>url) = url.self;
+         
+    (<any>body) = body.self;
+    
+    call(739596726,[ client,url,body, _$index]);
+}
+
+export const getString = (client:HttpClient,url:Atom,body:HttpClientBody, callback:([HttpClient,HttpClientResponse| Error])) => {
+    var _$index = callbacks.register(callback);
+     
+    (<any>client) = client.self;
+         
+    (<any>url) = url.self;
+         
+    (<any>body) = body.self;
+    
+    call(2173630691,[ client,url,body, _$index]);
+}
+
+export const postVec = (client:HttpClient,url:Atom,body:HttpClientBody, callback:([HttpClient,HttpClientResponse| Error])) => {
+    var _$index = callbacks.register(callback);
+     
+    (<any>client) = client.self;
+         
+    (<any>url) = url.self;
+         
+    (<any>body) = body.self;
+    
+    call(1358301807,[ client,url,body, _$index]);
+}
+
+export const postString = (client:HttpClient,url:Atom,body:HttpClientBody, callback:([HttpClient,HttpClientResponse| Error])) => {
+    var _$index = callbacks.register(callback);
+     
+    (<any>client) = client.self;
+         
+    (<any>url) = url.self;
+         
+    (<any>body) = body.self;
+    
+    call(3423707807,[ client,url,body, _$index]);
 }
