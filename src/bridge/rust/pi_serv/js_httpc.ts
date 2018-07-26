@@ -5,8 +5,8 @@ import * as bigInt from "../../../pi/bigint/biginteger";
 import {u64ToBuffer, u128ToBuffer} from "../../../pi/bigint/util";
 import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
 import {Vec} from "../def/vec"
-import {HttpClient} from "../httpc"
 import {Atom} from "../pi_lib/atom"
+import {HttpClient} from "../httpc"
 import {HttpClientResponse} from "../httpc"
 export class HttpClientOptions extends NObject{
     static _$info = new SInfo("HttpClientOptions", 1131624585 , new Map(), []);    
@@ -57,33 +57,6 @@ export class HttpClientOptions extends NObject{
 export class HttpClientBody extends NObject{
     static _$info = new SInfo("HttpClientBody", 2404566785 , new Map(), []);    
     
-    static bodyVec = (body:Vec): HttpClientBody => {          
-        (<any>body) = body.self;
-        
-        let result = call(2113618061,[ body ]);     
-        (<any>result) = new HttpClientBody(result);
-        
-        return result; 
-    }    
-    
-    static jsonVec = (key:string,value:Vec): HttpClientBody => {               
-        (<any>value) = value.self;
-        
-        let result = call(1703602826,[ key,value ]);     
-        (<any>result) = new HttpClientBody(result);
-        
-        return result; 
-    }    
-    
-    static formVec = (key:string,value:Vec): HttpClientBody => {               
-        (<any>value) = value.self;
-        
-        let result = call(3718237849,[ key,value ]);     
-        (<any>result) = new HttpClientBody(result);
-        
-        return result; 
-    }    
-    
     getJsonVal = (key:string): string => {          
         let result = call(2175286088,[ this.self,key ]);     
         if(result !== undefined){         
@@ -121,22 +94,26 @@ export class HttpClientBody extends NObject{
         return result; 
     }    
     
-    static bodyString = (body:string): HttpClientBody => {          
-        let result = call(794872933,[ body ]);     
+    static body = (body:Vec): HttpClientBody => {          
+        (<any>body) = body.self;
+        
+        let result = call(222718491,[ body ]);     
         (<any>result) = new HttpClientBody(result);
         
         return result; 
     }    
     
-    static jsonString = (key:string,value:string): HttpClientBody => {               
-        let result = call(965054041,[ key,value ]);     
+    static json = (key:Atom,value:string): HttpClientBody => {          
+        (<any>key) = key.self;
+             
+        let result = call(2887367887,[ key,value ]);     
         (<any>result) = new HttpClientBody(result);
         
         return result; 
     }    
     
-    static formString = (key:string,value:string): HttpClientBody => {               
-        let result = call(2118843620,[ key,value ]);     
+    static form = (key:string,value:string): HttpClientBody => {               
+        let result = call(2075214718,[ key,value ]);     
         (<any>result) = new HttpClientBody(result);
         
         return result; 
