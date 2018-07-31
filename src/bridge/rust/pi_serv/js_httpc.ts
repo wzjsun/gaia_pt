@@ -94,26 +94,33 @@ export class HttpClientBody extends NObject{
         return result; 
     }    
     
-    static body = (body:Vec): HttpClientBody => {          
+    static bodyVec = (body:Vec): HttpClientBody => {          
         (<any>body) = body.self;
         
-        let result = call(222718491,[ body ]);     
+        let result = call(2113618061,[ body ]);     
         (<any>result) = new HttpClientBody(result);
         
         return result; 
     }    
     
-    static json = (key:Atom,value:string): HttpClientBody => {          
+    static bodyString = (body:string): HttpClientBody => {          
+        let result = call(794872933,[ body ]);     
+        (<any>result) = new HttpClientBody(result);
+        
+        return result; 
+    }    
+    
+    static jsonString = (key:Atom,value:string): HttpClientBody => {          
         (<any>key) = key.self;
              
-        let result = call(2887367887,[ key,value ]);     
+        let result = call(965054041,[ key,value ]);     
         (<any>result) = new HttpClientBody(result);
         
         return result; 
     }    
     
-    static form = (key:string,value:string): HttpClientBody => {               
-        let result = call(2075214718,[ key,value ]);     
+    static formString = (key:string,value:string): HttpClientBody => {               
+        let result = call(2118843620,[ key,value ]);     
         (<any>result) = new HttpClientBody(result);
         
         return result; 
