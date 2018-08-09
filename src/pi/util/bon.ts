@@ -126,7 +126,7 @@ export class BonBuffer {
 	 * @description 写入任意类型
 	 * @example
 	 */
-	write(v: any) {
+	write(v: any): BonBuffer {
 		if (v === undefined || v === null)
 			return this.writeNil();
 		let t = typeof v;
@@ -158,7 +158,7 @@ export class BonBuffer {
 	 * @description 写入U8
 	 * @example
 	 */
-	writeU8(v: number) {
+	writeU8(v: number): BonBuffer {
 		if (this.tail + 1 > this.view.byteLength)
 			this.extendCapity(1);
 		this.view.setUint8(this.tail++, v);
@@ -168,10 +168,10 @@ export class BonBuffer {
 	 * @description 写入U16
 	 * @example
 	 */
-	writeU16(v: number) {
+	writeU16(v: number): BonBuffer {
 		if (this.tail + 2 > this.view.byteLength)
 			this.extendCapity(2);
-		this.view.setUint16(this.tail++, v);
+		this.view.setUint16(this.tail++, v, true);
 		this.tail += 2;
 		return this;
 	}
@@ -179,10 +179,12 @@ export class BonBuffer {
 	 * @description 写入U32
 	 * @example
 	 */
-	writeU32(v: number) {
+	writeU32(v: number): BonBuffer {
 		if (this.tail + 4 > this.view.byteLength)
-			this.extendCapity(4);
-		this.view.setUint32(this.tail, v);
+            this.extendCapity(4);
+            console.log(v, this.u8[0], this.u8[1], this.u8[2],this.tail);
+        this.view.setUint32(this.tail, v, true);
+        console.log( this.u8[0], this.u8[1], this.u8[2], this.u8[3], this.u8[4], this.u8[5], this.u8[6]);
 		this.tail += 4;
 		return this;
     }
@@ -191,7 +193,7 @@ export class BonBuffer {
 	 * @description 写大整数, ArrayBuffer应该是一个小端序
 	 * @example
 	 */
-	writeBigInt(v: number | Uint8Array) {
+	writeBigInt(v: number | Uint8Array): BonBuffer {
         if(typeof v === "number"){
             this.writeInt(v);
         }else if(v.byteLength === 8){
@@ -214,7 +216,7 @@ export class BonBuffer {
 	 * @description 写入一个基本类型
 	 * @example
 	 */
-	writeBase(v: any) {
+	writeBase(v: any): BonBuffer {
 		if (v === undefined || v === null)
 			return this.writeNil();
 		let t = typeof v;
@@ -233,7 +235,7 @@ export class BonBuffer {
 	 * @description 写入一个空
 	 * @example
 	 */
-	writeNil() {
+	writeNil(): BonBuffer {
 		if (this.tail >= this.view.byteLength)
 			this.extendCapity(1);
 		this.view.setUint8(this.tail++, 0);
@@ -243,7 +245,7 @@ export class BonBuffer {
 	 * @description 写入一个布尔值
 	 * @example
 	 */
-	writeBool(b: boolean) {
+	writeBool(b: boolean): BonBuffer {
 		if (this.tail >= this.view.byteLength)
 			this.extendCapity(1);
 		this.view.setUint8(this.tail++, b === true ? 2 : 1);
@@ -253,7 +255,7 @@ export class BonBuffer {
 	 * @description 写入一个整数
 	 * @example
 	 */
-	writeInt(v: number) {
+	writeInt(v: number): BonBuffer {
 		if (v >= -1 && v < 20) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
@@ -305,7 +307,7 @@ export class BonBuffer {
 	 * @description 写入F32
 	 * @example
 	 */
-	writeF32(v: number) {
+	writeF32(v: number): BonBuffer {
 		if (v === 0.0) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
@@ -329,7 +331,7 @@ export class BonBuffer {
 	 * @description 写入F64
 	 * @example
 	 */
-	writeF64(v: number) {
+	writeF64(v: number): BonBuffer {
 		if (v === 0.0) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
@@ -353,14 +355,14 @@ export class BonBuffer {
 	 * @description 写入二进制数据
 	 * @example
 	 */
-	writeBin(arr: Uint8Array, offset?: number, length?: number) {
+	writeBin(arr: Uint8Array, offset?: number, length?: number): BonBuffer {
 		return this.writeData(arr, 111, offset, length);
 	}
 	/**
 	 * @description 写入字符串，用utf8格式
 	 * @example
 	 */
-	writeUtf8(s: string) {
+	writeUtf8(s: string): BonBuffer {
         let arr = utf8Encode(s);
 		return this.writeData(arr, 42);
     }
@@ -369,15 +371,16 @@ export class BonBuffer {
 	 * @description 写map
 	 * @example
 	 */
-	writeMap<K, V>(map: Map<K, V>, callbackfn: (key: K, value: V) => void) {
+	writeMap<K, V>(map: Map<K, V>, callbackfn: (key: K, value: V) => void): BonBuffer {
         if (!map){
             this.writeNil();
-            return;
+            return this;
         }else{
             this.writeInt(map.size);
             map.forEach((v, k) => {
                 callbackfn(k, v);
             });
+            return this;
         }
     }
     
@@ -385,15 +388,16 @@ export class BonBuffer {
 	 * @description 写array
 	 * @example
 	 */
-	writeArray<E>(array: Array<E>, callbackfn: (elem: E) => void) {
+	writeArray<E>(array: Array<E>, callbackfn: (elem: E) => void): BonBuffer {
         if (!array){
             this.writeNil();
-            return;
+            return this;
         }else{
             this.writeInt(array.length);
             for(let i = 0; i < array.length; i++){
                 callbackfn(array[i]);
             }
+            return this;
         }
     }
     
@@ -401,12 +405,13 @@ export class BonBuffer {
 	 * @description 写array
 	 * @example
 	 */
-	writeBonCode<E>(bon: BonCode) {
+	writeBonCode<E>(bon: BonCode): BonBuffer {
         if (!bon){
             this.writeNil();
-            return;
+            return this;
         }else{
             bon.bonEncode(this);
+            return this;
         }
     }
     
@@ -414,8 +419,8 @@ export class BonBuffer {
 	 * @description 写入数据
 	 * @example
 	 */
-	writeData(arr: Uint8Array, type: number, offset?: number, length?: number) {
-		if (!arr) {
+	writeData(arr: Uint8Array, type: number, offset?: number, length?: number): BonBuffer {
+		if (!arr || arr.length === 0) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
 			this.view.setUint8(this.tail++, type);
@@ -471,7 +476,7 @@ export class BonBuffer {
 	 * 4字节： 110xxxxx xxxxxxxx xxxxxxxx xxxxxxxx
 	 * @example
 	 */
-	writePInt(v: number) {
+	writePInt(v: number): BonBuffer {
 		if (v < 0x80) {
 			if (this.tail >= this.view.byteLength)
 				this.extendCapity(1);
@@ -498,7 +503,7 @@ export class BonBuffer {
 	 * @description 写入一个容器类型（对象、数组或map、枚举）
 	 * @example
 	 */
-	writeCt(o: any, writeNext: WriteNext, estimatedSize?: number) {
+	writeCt(o: any, writeNext: WriteNext, estimatedSize?: number) : BonBuffer {
 		const t = this.tail;
 		// 根据预估大小，预留出足够的空间来写入容器的总大小
 		estimatedSize = estimatedSize || 0xffff;
@@ -614,7 +619,7 @@ export class BonBuffer {
 	 */
 	readU16(): number {
         this.head += 2;
-		return this.view.getUint16(this.head-2);
+		return this.view.getUint16(this.head-2, true);
 	}
 	/**
 	 * @description 读U32
@@ -622,7 +627,7 @@ export class BonBuffer {
 	 */
 	readU32(): number {
 		this.head += 4;
-		return this.view.getUint32(this.head-4);
+		return this.view.getUint32(this.head-4, true);
 	}
     
     /**
@@ -796,6 +801,7 @@ export class BonBuffer {
             let item = callbackfn();
             map.set(item[0] ,item[1]);
         }
+        return map;
     }
     
     /**
@@ -814,6 +820,7 @@ export class BonBuffer {
             let el = callbackfn();
             array.push(el);
         }
+        return array;
     }
     
     /**
@@ -821,11 +828,18 @@ export class BonBuffer {
 	 * @example
 	 */
 	readBonCode(constructor: any): any {
-        let t = this.getType();
-        if(t === 0){
-            return null;
+        try {
+            let t = this.getType();
+            if(t === 0){
+                return null;
+            }
+        } catch (error) {
+            return (<BonCode>new constructor());
         }
-        (<BonCode>new constructor()).bonDecode(this)
+        
+        let r = (<BonCode>new constructor());
+        r.bonDecode(this);
+        return r;
     }
 
     readCt(next: ReadNext): any{

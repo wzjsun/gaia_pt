@@ -1,14 +1,23 @@
 
-import {NativeObject, call, syncCall, callbacks} from "../../vm/vm";
+import {NativeObject, call, syncCall, callbacks, asyncCall} from "../../vm/vm";
 import {NObject} from "../../vm/nobject";
 import * as bigInt from "../../../pi/bigint/biginteger";
 import {u64ToBuffer, u128ToBuffer} from "../../../pi/bigint/util";
 import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
 import {VMFactory} from "../pi_vm/pi_vm_impl"
 import {Mgr} from "../pi_db/mgr"
+/*
+* Topic处理器
+*/
 export class TopicHandler extends NObject{
     static _$info = new SInfo("TopicHandler", 585492653 , new Map(), []);    
-    
+    //构建一个处理器
+    /**
+     * @param len:usize
+     * @param factory:VMFactory
+     * @param mgr:Mgr
+     * @return 
+     */
     static new = (len:number,factory:VMFactory,mgr:Mgr): TopicHandler => {               
         (<any>factory) = factory.self;
              
@@ -20,9 +29,18 @@ export class TopicHandler extends NObject{
         return result; 
     }
 }
+/*
+* 异步请求处理器
+*/
 export class AsyncRequestHandler extends NObject{
     static _$info = new SInfo("AsyncRequestHandler", 3366364668 , new Map(), []);    
-    
+    //构建一个处理器
+    /**
+     * @param len:usize
+     * @param factory:VMFactory
+     * @param mgr:Mgr
+     * @return 
+     */
     static new = (len:number,factory:VMFactory,mgr:Mgr): AsyncRequestHandler => {               
         (<any>factory) = factory.self;
              

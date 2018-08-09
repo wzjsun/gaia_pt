@@ -4,7 +4,7 @@ import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../..
 import { StructInfo, FieldType, FieldInfo, EnumType} from "../../pi/struct/sinfo";
 
 export class AsyncMeta extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/bridge/async/async_meta.AsyncMeta",1168653562,  new Map( [["constructor","true"],[" managed","false"]]), [new FieldInfo("path",  new FieldType( EnumType.Str ), null) ]);
+	static _$info = new StructInfo("bridge/async/async_meta.AsyncMeta",68782621,  new Map( [["constructor","true"],[" managed","false"]]), [new FieldInfo("path",  new FieldType( EnumType.Str ), null) ]);
 
     path: string;
 

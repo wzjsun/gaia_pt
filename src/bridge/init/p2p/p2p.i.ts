@@ -1,4 +1,5 @@
-import {p2pManageNew, sleep} from "../../rust/pi_serv/js_call";
+import {sleep} from "../../rust/pi_serv/js_base";
+import {p2pManageNew} from "../../rust/pi_serv/js_net";
 import {cfgMgr} from "../../../pi/util/cfg";
 import {P2PCfg} from "./p2p.s";
 import {Vec} from "../../rust/def/vec";

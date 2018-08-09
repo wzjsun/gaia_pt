@@ -4,7 +4,7 @@ import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../..
 import { StructInfo, FieldType, FieldInfo, EnumType} from "../../pi/struct/sinfo";
 
 export class MqttCfg extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/bridge/init/mqtt.MqttCfg",665218164,  new Map( [["constructor","true"],["hasmgr","false"]]), [new FieldInfo("addr",  new FieldType( EnumType.Str ), null), new FieldInfo("protocol",  new FieldType( EnumType.Str ), null), new FieldInfo("send_buf_size",  new FieldType( EnumType.Usize ), null), new FieldInfo("recv_timeout",  new FieldType( EnumType.Usize ), null) ]);
+	static _$info = new StructInfo("bridge/init/mqtt.MqttCfg",2969823486,  new Map( [["constructor","true"],["hasmgr","false"]]), [new FieldInfo("addr",  new FieldType( EnumType.Str ), null), new FieldInfo("protocol",  new FieldType( EnumType.Str ), null), new FieldInfo("send_buf_size",  new FieldType( EnumType.Usize ), null), new FieldInfo("recv_timeout",  new FieldType( EnumType.Usize ), null) ]);
 
     addr: string;
     protocol: string;

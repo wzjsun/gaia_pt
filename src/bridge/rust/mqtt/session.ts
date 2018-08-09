@@ -6,7 +6,12 @@ import {Atom} from "../pi_lib/atom"
 import {Vec} from "../def/vec"
 export class Session extends NObject{
     static _$info = new SInfo("Session", 107216069 , new Map(), []);    
-    
+    //回应消息
+    /**
+     * @param self
+     * @param _topic:Atom
+     * @param msg:Vec<u8>
+     */
     respond = (_topic:Atom,msg:Vec) => {          
         (<any>_topic) = _topic.self;
              

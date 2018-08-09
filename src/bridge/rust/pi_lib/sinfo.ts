@@ -1,4 +1,7 @@
 
+/**
+ * 结构体信息
+ */
 import {NativeObject, call} from "../../vm/vm";
 import {NObject} from "../../vm/nobject";
 import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
@@ -7,7 +10,11 @@ import {u128ToBuffer, u64ToBuffer} from "../../../pi/bigint/util";
 import {Atom} from "./atom"
 export class StructInfo extends NObject{
     static _$info = new SInfo("StructInfo", 2453199836 , new Map(), []);    
-    
+    /**
+     * @param name:Atom
+     * @param name_hash:u32
+     * @return 
+     */
     static new = (name:Atom,name_hash:number): StructInfo => {          
         (<any>name) = name.self;
              

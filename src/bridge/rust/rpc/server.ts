@@ -5,7 +5,10 @@ import {StructInfo as SInfo} from "../../../pi/struct/sinfo";
 import {ServerNode} from "../mqtt/server"
 export class RPCServer extends NObject{
     static _$info = new SInfo("RPCServer", 3418977212 , new Map(), []);    
-    
+    /**
+     * @param mqtt:ServerNode
+     * @return 
+     */
     static new = (mqtt:ServerNode): RPCServer => {          
         (<any>mqtt) = mqtt.self;
         

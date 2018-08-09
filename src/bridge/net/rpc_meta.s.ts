@@ -4,7 +4,7 @@ import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../..
 import { StructInfo, FieldType, FieldInfo, EnumType} from "../../pi/struct/sinfo";
 
 export class RpcMeta extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/bridge/net/rpc_meta.RpcMeta",2623953717,  new Map( [["constructor","true"],[" managed","false"]]), [new FieldInfo("path",  new FieldType( EnumType.Str ), null) ]);
+	static _$info = new StructInfo("bridge/net/rpc_meta.RpcMeta",2687764434,  new Map( [["constructor","true"],[" managed","false"]]), [new FieldInfo("path",  new FieldType( EnumType.Str ), null) ]);
 
     path: string;
 

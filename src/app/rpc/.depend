@@ -1,1 +1,0 @@
-winit.deps=[{"path":"../scripts/app/rpc/player.s.ts","sign":"M2N4yaNFxLr4XRxtD8B1ca","time":1527924834007,"size":1347,"depend":[]},{"path":"player_rpc.c.ts","sign":"V4HqPxcaNRfkL5XNHtUDnR","time":1530518427180,"size":429,"depend":[]},{"path":"player.s.ts","sign":"KV2fJZWnME4QUBUjwKW7ZU","time":1530518150510,"size":1544,"depend":[]}];winit.init();

@@ -7,47 +7,48 @@ _$define("rt/js_njs/njs", function (require, exports, module){
         this.message = str;
     }
     exports.syncCall = function(funHash, args){
-        try {
+        //try {
             var r = NativeObject.call(funHash, args);
            
             if(r === undefined){
-                    return __thread_yield();
+                var a =  __thread_yield();
+                return a;
             }else{
                 return r;
             }
-        } catch (error) {
-            if(typeof error === "string" && error.indexOf("Result is Err") > -1){
-                return exports.Error(error.replace("Result is Err", ""));
-            }else{
-                throw error;
-            }
-        }
+        // } catch (error) {
+        //     if(typeof error === "string" && error.indexOf("Result is Err") > -1){
+        //         return exports.Error(error.replace("Result is Err", ""));
+        //     }else{
+        //         throw error;
+        //     }
+        // }
     }
 
     exports.call = function(funHash, args){
-        try {
+        //try {
             return NativeObject.call(funHash, args);
-        } catch (error) {
-            if(typeof error === "string" && error.indexOf("Result is Err") > -1){
-                return exports.Error(error.replace("Result is Err", ""));
-            }else{
-                throw error;
-            }
-        }
+        // } catch (error) {
+        //     if(typeof error === "string" && error.indexOf("Result is Err") > -1){
+        //         return exports.Error(error.replace("Result is Err", ""));
+        //     }else{
+        //         throw error;
+        //     }
+        // }
     }
 
     exports.asyncCall = function(funHash, args, callback){
         var index = callbacks.register(callback);
         args.push(index);
-        try {
+        //try {
             return NativeObject.call(funHash, args);
-        } catch (error) {
-            if(typeof error === "string" && error.indexOf("Result is Err") > -1){
-                return exports.Error(error.replace("Result is Err", ""));
-            }else{
-                throw error;
-            }
-        }
+        // } catch (error) {
+        //     if(typeof error === "string" && error.indexOf("Result is Err") > -1){
+        //         return exports.Error(error.replace("Result is Err", ""));
+        //     }else{
+        //         throw error;
+        //     }
+        // }
     }
 
     //将大整数转化为u32的数组

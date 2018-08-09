@@ -1,29 +1,20 @@
-declare var pi_modules;
-
 import {Struct, StructMgr} from "../../pi/struct/struct_mgr";
 import { cfgMgr } from "../../pi/util/cfg";
 import {Mgr, Tr} from "../rust/pi_db/mgr"
 import {Vec} from "../rust/def/vec"
-import { createSinfo, tabkvWithValue} from "../rust/pi_serv/js_call"
+import {tabkvWithValue} from "../rust/pi_serv/js_db"
+import { createSinfo} from "../rust/pi_serv/js_base"
 import {write} from "../db"
 import {BonBuffer} from "../../pi/util/bon"
 import { Atom } from "../rust/pi_lib/atom";
 import {Depend} from "../rust/pi_serv/depend";
-import { Error } from "../vm/vm";
+import * as MetaInit from "../../pi/struct/meta_init";
 
 export const db_mgr = new Mgr((<any>self)._$db_mgr);
 export const depend = new Depend((<any>self)._$depend);
-export const structMgr = new StructMgr();
-for(var id in pi_modules){
-	if(pi_modules.hasOwnProperty(id) && pi_modules[id].exports){
-		for(var kk in pi_modules[id].exports){
-			var c = pi_modules[id].exports[kk];
-			if(Struct.isPrototypeOf(c) && c._$info){
-				structMgr.register(c._$info.name_hash, c, id + "." + kk);
-			}
-		}
-	}
-}
+MetaInit.init();
+
+export let initOk;
 
 // let memery_db = MemeryDB.new(); 
 // register_memery_db(db_mgr, "memory", memery_db);
@@ -52,15 +43,10 @@ export const writeCfg = () => {
             let buf = new BonBuffer();
             (<any>first.constructor)._$info.bonEncode(buf);
             let r = tr.alter(Atom.fromFrom("memory"), Atom.fromFrom((<any>first.constructor)._$info.name), createSinfo(buf.getBuffer()));
-			if(r instanceof Error){
-				return r;
-            }
             r = tr.modify(writeData, 1000, false);
-			if(r instanceof Error){
-				return r;
-            }
         }); 
     });
     
+    initOk = true;
     console.log("writecfg: ok");
 }

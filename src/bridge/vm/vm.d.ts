@@ -6,6 +6,7 @@ export class NativeObject{
 
 declare function syncCall(funHash: number, args:Array<any>): any;
 declare function call(funHash: number, args:Array<any>): any;
+declare function asyncCall(funHash: number, args:Array<any>, cd: (any) => void): any;
 
 declare function __thread_yield():any;
 declare function __thread_call(f: any): any;

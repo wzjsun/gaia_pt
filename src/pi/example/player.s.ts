@@ -4,7 +4,7 @@ import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../st
 import { StructInfo, FieldType, FieldInfo, EnumType} from "../struct/sinfo";
 
 export class getName extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/example/player.getName",1308702844,  new Map( [["type","rpc"]]), [new FieldInfo("id",  new FieldType( EnumType.I16 ), null) ]);
+	static _$info = new StructInfo("pi/example/player.getName",2824192445,  new Map( [["type","rpc"]]), [new FieldInfo("id",  new FieldType( EnumType.I16 ), null) ]);
 
     id: number;
 
@@ -33,7 +33,7 @@ export class getName extends Struct {
 
 
 export class setName extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/example/player.setName",2062376261,  new Map( [["type","rpc"]]), [new FieldInfo("id",  new FieldType( EnumType.I16 ), null), new FieldInfo("name",  new FieldType( EnumType.Str ), null) ]);
+	static _$info = new StructInfo("pi/example/player.setName",2062275322,  new Map( [["type","rpc"]]), [new FieldInfo("id",  new FieldType( EnumType.I16 ), null), new FieldInfo("name",  new FieldType( EnumType.Str ), null) ]);
 
     id: number;
     name: string;

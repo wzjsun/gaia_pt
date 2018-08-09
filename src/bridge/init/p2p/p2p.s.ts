@@ -5,7 +5,7 @@ import { StructInfo, FieldType, FieldInfo, EnumType} from "../../../pi/struct/si
 import * as bigInt from "../../vm/biginteger";
 
 export class P2PCfg extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/bridge/init/p2p/p2p.P2PCfg",108040410,  new Map( [["constructor","true"],["hasmgr","false"]]), [new FieldInfo("addr",  new FieldType( EnumType.Str ), null), new FieldInfo("con",  new FieldType( EnumType.Str ), null), new FieldInfo("peer_list",  new FieldType( EnumType.Arr,  new FieldType( EnumType.Struct, new StructInfo("",1257683291, null, [new FieldInfo("0",  new FieldType( EnumType.Str ), null), new FieldInfo("1",  new FieldType( EnumType.U32 ), null) ])  ) ), null) ]);
+	static _$info = new StructInfo("bridge/init/p2p/p2p.P2PCfg",3008177878,  new Map( [["constructor","true"],["hasmgr","false"]]), [new FieldInfo("addr",  new FieldType( EnumType.Str ), null), new FieldInfo("con",  new FieldType( EnumType.Str ), null), new FieldInfo("peer_list",  new FieldType( EnumType.Arr,  new FieldType( EnumType.Struct, new StructInfo("",1257683291, null, [new FieldInfo("0",  new FieldType( EnumType.Str ), null), new FieldInfo("1",  new FieldType( EnumType.U32 ), null) ])  ) ), null) ]);
 
     addr: string;
     con: string;

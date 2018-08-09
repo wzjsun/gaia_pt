@@ -4,7 +4,7 @@ import { addToMeta, removeFromMeta, Struct, notifyModify, StructMgr} from "../..
 import { StructInfo, FieldType, FieldInfo, EnumType} from "../../struct/sinfo";
 
 export class __Anon1 extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/example/tranfrom/transform.__Anon1",615858659,  new Map( [["readonly","true"]]), [new FieldInfo("x",  new FieldType( EnumType.U32 ), null), new FieldInfo("y",  new FieldType( EnumType.U32 ), null), new FieldInfo("z",  new FieldType( EnumType.U32 ), null) ]);
+	static _$info = new StructInfo("pi/example/tranfrom/transform.__Anon1",12309350,  new Map( [["readonly","true"]]), [new FieldInfo("x",  new FieldType( EnumType.U32 ), null), new FieldInfo("y",  new FieldType( EnumType.U32 ), null), new FieldInfo("z",  new FieldType( EnumType.U32 ), null) ]);
 
 	readonly x: number;
 	readonly y: number;
@@ -48,7 +48,7 @@ export class __Anon1 extends Struct {
 
 
 export class __Anon2 extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/example/tranfrom/transform.__Anon2",3413040426,  new Map( [["readonly","true"]]), [new FieldInfo("x",  new FieldType( EnumType.U32 ), null), new FieldInfo("y",  new FieldType( EnumType.U32 ), null), new FieldInfo("z",  new FieldType( EnumType.U32 ), null) ]);
+	static _$info = new StructInfo("pi/example/tranfrom/transform.__Anon2",115988842,  new Map( [["readonly","true"]]), [new FieldInfo("x",  new FieldType( EnumType.U32 ), null), new FieldInfo("y",  new FieldType( EnumType.U32 ), null), new FieldInfo("z",  new FieldType( EnumType.U32 ), null) ]);
 
 	readonly x: number;
 	readonly y: number;
@@ -92,7 +92,7 @@ export class __Anon2 extends Struct {
 
 
 export class __Anon3 extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/example/tranfrom/transform.__Anon3",317610819,  new Map( [["readonly","true"]]), [new FieldInfo("x",  new FieldType( EnumType.U32 ), null), new FieldInfo("y",  new FieldType( EnumType.U32 ), null), new FieldInfo("z",  new FieldType( EnumType.U32 ), null) ]);
+	static _$info = new StructInfo("pi/example/tranfrom/transform.__Anon3",3539294979,  new Map( [["readonly","true"]]), [new FieldInfo("x",  new FieldType( EnumType.U32 ), null), new FieldInfo("y",  new FieldType( EnumType.U32 ), null), new FieldInfo("z",  new FieldType( EnumType.U32 ), null) ]);
 
 	readonly x: number;
 	readonly y: number;
@@ -136,7 +136,7 @@ export class __Anon3 extends Struct {
 
 
 export class Transform extends Struct {
-	static _$info = new StructInfo("gaia_pt/src/pi/example/tranfrom/transform.Transform",2952076021,  new Map( [["readonly","true"]]), [new FieldInfo("position",  new FieldType(EnumType.Struct, __Anon1._$info ), null), new FieldInfo("rotation",  new FieldType(EnumType.Struct, __Anon2._$info ), null), new FieldInfo("scale",  new FieldType(EnumType.Struct, __Anon3._$info ), null), new FieldInfo("id",  new FieldType( EnumType.F64 ), null) ]);
+	static _$info = new StructInfo("pi/example/tranfrom/transform.Transform",329079523,  new Map( [["readonly","true"]]), [new FieldInfo("position",  new FieldType(EnumType.Struct, __Anon1._$info ), null), new FieldInfo("rotation",  new FieldType(EnumType.Struct, __Anon2._$info ), null), new FieldInfo("scale",  new FieldType(EnumType.Struct, __Anon3._$info ), null), new FieldInfo("id",  new FieldType( EnumType.F64 ), null) ]);
 
 	readonly position: __Anon1;
 	readonly rotation: __Anon2;
